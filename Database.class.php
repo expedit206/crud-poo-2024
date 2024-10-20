@@ -34,14 +34,16 @@ class Database
             var_dump($this->pdo);
             $stmt = $this->pdo->prepare($sql);
             
+            $result =$stmt->execute($data);
             // Exécuter la requête avec les données
-            if ($stmt->execute($data)) {
+            if ($result) {
                 echo 'Produit ajouté avec succès';
             } else {
                 // Si l'exécution échoue, vous pouvez obtenir les erreurs
                 $errorInfo = $stmt->errorInfo();
                 echo 'Erreur lors de l\'ajout du produit : ' . $errorInfo[2] . ' '. $errorInfo[1]; // Message d'erreur
             }
+            return $result;
         } catch (PDOException $e) {
             // Gérer les exceptions PDO
             echo 'Erreur de base de données : ' . $e->getMessage();

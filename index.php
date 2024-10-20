@@ -75,11 +75,12 @@ if (isset($_GET['id'])) {
         .button {
             display: inline-block;
             padding: 10px 15px;
-            background-color: #007bff;
+            background-color: #08095C9C;
             color: white;
             border: none;
             border-radius: 4px;
             text-decoration: none;
+            font-weight:bold;
         }
         .button:hover {
             background-color: #0056b3;
@@ -98,7 +99,7 @@ if (isset($_GET['id'])) {
 <body id='body-index'>
     <div class="header">
         <h1>Gestion des Produits</h1>
-        <a class="button"  href="create-product.php">Ajouter un Produit</a>
+        <a class="button"  href="add-product.php">Ajouter un Produit</a>
     </div>
 
     <div class="container">

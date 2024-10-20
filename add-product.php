@@ -10,8 +10,10 @@
         $description = htmlspecialchars($_POST['description']);
         $prix = floatval($_POST['price']);
         $produit = compact("nom", "description", "prix");
-        $sql = "INSERT into produits values(null, :nom, :description, : prix)";
-        $db->insert($sql, $produit);
+        $sql = "INSERT into produits values(null, :nom, :description, :prix)";
+        if($db->insert($sql, $produit)){
+            header('location:index.php');
+        }
 
         // Vous pouvez ensuite ajouter ici le code pour insérer ces données dans une base de données ou effectuer d'autres opérations.
 }
@@ -26,20 +28,18 @@
 <body>
     <div class="form-container">
         <h2>Ajouter un Produit</h2>
-       <form method="POST">
-    <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id']); ?>">
-    
-    <label for="name">Nom du produit:</label>
-    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($product['nom']); ?>" required>
+        <form  method="POST">
+            <label for="name">Nom du produit:</label>
+            <input type="text" id="name" name="name" required>
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" rows="4" required><?php echo htmlspecialchars($product['description']); ?></textarea>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
 
-    <label for="price">Prix:</label>
-    <input type="number" id="price" name="price" value="<?php echo htmlspecialchars($product['prix']); ?>" step="0.01" required>
+            <label for="price">Prix:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
 
-    <input type="submit" name="submit" value="Modifier Produit">
-</form>
+            <input type="submit" name='submit' value="Ajouter Produit">
+        </form>
     </div>
 </body>
 </html>
