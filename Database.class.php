@@ -3,6 +3,7 @@ class Database
 { 
     
     protected $pdo;
+
     public function __construct()
     {
         try {
@@ -60,7 +61,8 @@ class Database
        return $stmt = $result->execute($data);
         }
 
-        public function delete($id  )
+
+        public function delete($id)
         {
             $sql = "DELETE from produits where id = $id";
 
