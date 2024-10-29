@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
-<?php
-    require 'Database.class.php';
-    if (isset($_POST['submit'])) {  
-        $db = new Database;
-        // Récupérer les données du formulaire
-        $nom = htmlspecialchars($_POST['name']);
-        $description = htmlspecialchars($_POST['description']);
-        $prix = floatval($_POST['price']);
-        $produit = compact("nom", "description", "prix");
-        $sql = "INSERT INTO produits VALUES (null, :nom, :description, :prix)";
-        if ($db->insert($sql, $produit)) {
-            header('location:index.php');
-        }
-    }
-?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un Produit</title>
-    <link rel="stylesheet" href="./style.css">
-    <style>
+    <title>Edit</title>
+    <link rel="stylesheet" href="../css/add.css">
+
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un Produit</title>
+</head>
+<style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -104,28 +99,28 @@
             background-color: #218838;
         }
     </style>
-</head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.php">Liste des Produits</a></li>
-        </ul>
-    </nav>
+<div class="form-container">
+
+<h1>Modifier le Produit</h1>
+<form method="POST" action='update'>
     
-    <div class="form-container">
-        <h2>Ajouter un Produit</h2>
-        <form method="POST">
-            <label for="name">Nom du produit:</label>
-            <input type="text" id="name" name="name" required>
+    <label for="name">Nom du produit:</label>
+    <input type="text" id="name" name="nom" value="<?= $product['nom'] ?>" required>
+    <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id']); ?>">
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" required><?php echo htmlspecialchars($product['description']); ?></textarea>
 
-            <label for="price">Prix:</label>
-            <input type="number" id="price" name="price" step="0.01" required>
+    <label for="price">Prix:</label>
+    <input type="number" id="price" name="prix" value="<?php echo htmlspecialchars($product['prix']); ?>" step="0.01" required>
 
-            <input type="submit" name='submit' value="Ajouter Produit">
-        </form>
+    <input type="submit" name="submit" value="Modifier Produit">
+</form>
+<a href="index">Retour</a>
     </div>
+
+</body>
+</html>
 </body>
 </html>

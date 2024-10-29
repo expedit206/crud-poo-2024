@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /php_poo/crud_mvc
+
+# Redirection vers index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
