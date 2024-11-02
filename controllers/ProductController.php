@@ -13,13 +13,13 @@ class ProductController{
 
             }
 
-    public function index()
-    {
+        public function index()
+        {
 
-         $products = $this->product->index();
-         
-         require 'views/index.php';
-     }
+            $products = $this->product->index();
+            
+            require 'views/index.php';
+        }
 
     public function createform()
     {
@@ -41,7 +41,7 @@ class ProductController{
      public function edit($id)
     {
          
-        $product = $this->product->find($id);
+        $product = $this->pro   duct->find($id);
 
          require 'views/edit-product.php';
      }
